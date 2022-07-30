@@ -3,12 +3,14 @@ interface Props {
   categories: string[];
   numberOfIncompleteTodos: number;
   onSelectCategory: (category: string) => void;
+  onClearCompletedTodos: () => void;
 }
 
 export const NavTodo = ({
   categories,
   numberOfIncompleteTodos,
   onSelectCategory,
+  onClearCompletedTodos,
 }: Props) => {
   return (
     <div>
@@ -24,7 +26,7 @@ export const NavTodo = ({
           </button>
         ))}
       </div>
-      <button>clear completed</button>
+      <button onClick={onClearCompletedTodos}>clear completed</button>
     </div>
   );
 };

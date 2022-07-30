@@ -31,6 +31,10 @@ export const App = () => {
     setTodoCategory(category);
   };
 
+  const clearCompletedTodos = () => {
+    setTodoList((todoList) => todoList.filter((todo) => !todo.checked));
+  };
+
   return (
     <>
       <h1>TODOS</h1>
@@ -48,6 +52,7 @@ export const App = () => {
           )}
           categories={todoCategories}
           onSelectCategory={selectTodoCategory}
+          onClearCompletedTodos={clearCompletedTodos}
         />
       </div>
     </>
