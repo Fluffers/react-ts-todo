@@ -1,13 +1,18 @@
 import { v4 as uuidv4 } from "uuid";
 interface Props {
   categories: string[];
+  numberOfIncompleteTodos: number;
   onSelectCategory: (category: string) => void;
 }
 
-export const NavTodo = ({ categories, onSelectCategory }: Props) => {
+export const NavTodo = ({
+  categories,
+  numberOfIncompleteTodos,
+  onSelectCategory,
+}: Props) => {
   return (
     <div>
-      <p>x items left</p>
+      <p>{numberOfIncompleteTodos} items left</p>
       <div>
         {categories.map((cat) => (
           <button

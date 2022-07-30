@@ -28,7 +28,6 @@ export const App = () => {
   };
 
   const selectTodoCategory = (category: string) => {
-    console.log("selected category: " + category);
     setTodoCategory(category);
   };
 
@@ -43,6 +42,10 @@ export const App = () => {
           onToggleTodo={toggleTodo}
         />
         <NavTodo
+          numberOfIncompleteTodos={todoList.reduce(
+            (counter, todo) => (todo.checked ? counter : counter + 1),
+            0
+          )}
           categories={todoCategories}
           onSelectCategory={selectTodoCategory}
         />
