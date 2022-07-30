@@ -6,7 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 import { Todo } from "../types";
 
 export const App = () => {
+  const todoCategories = ["all", "active", "completed"];
+
   const [todoList, setTodoList] = useState<Array<Todo>>([]);
+  const [todoCategory, setTodoCategory] = useState<string>(todoCategories[0]);
 
   const addTodo = (text: Todo["text"]) => {
     setTodoList(() => [
@@ -24,13 +27,25 @@ export const App = () => {
     );
   };
 
+  const selectTodoCategory = (category: string) => {
+    console.log("selected category: " + category);
+    setTodoCategory(category);
+  };
+
   return (
     <>
       <h1>TODOS</h1>
       <div>
         <InputTodo onTodoCreate={addTodo} />
-        <ListTodo list={todoList} onToggleTodo={toggleTodo} />
-        <NavTodo />
+        <ListTodo
+          list={todoList}
+          activeCategory={todoCategory}
+          onToggleTodo={toggleTodo}
+        />
+        <NavTodo
+          categories={todoCategories}
+          onSelectCategory={selectTodoCategory}
+        />
       </div>
     </>
   );
