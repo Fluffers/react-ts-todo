@@ -12,7 +12,9 @@ export const InputTodo = ({ onTodoCreate }: InputTodoProps) => {
     <form
       onSubmit={(event) => {
         event.preventDefault();
+        if (inputVal.trim().length < 1) return false;
         onTodoCreate(inputVal);
+        setInputVal("");
       }}
     >
       <input
