@@ -35,6 +35,12 @@ export const App = () => {
     setTodoList((todoList) => todoList.filter((todo) => !todo.checked));
   };
 
+  const toggleAllTodos = () => {
+    // TODO
+    // if all are complete untoggle all
+    // else just toggle all to complete
+  };
+
   return (
     <div className="text-center max-w-xl m-auto flex flex-col">
       <h1 className="text-pink-300 text-4xl m-2">TODOS</h1>
