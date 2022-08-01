@@ -36,9 +36,9 @@ export const App = () => {
   };
 
   return (
-    <>
-      <h1>TODOS</h1>
-      <div>
+    <div className="text-center max-w-xl m-auto flex flex-col">
+      <h1 className="text-pink-300 text-4xl m-2">TODOS</h1>
+      <div className="border border-solid border-gray-300 bg-white shadow-gray-300 shadow-lg">
         <InputTodo onTodoCreate={addTodo} />
         <ListTodo
           list={todoList}
@@ -51,10 +51,11 @@ export const App = () => {
             0
           )}
           categories={todoCategories}
+          activeCategory={todoCategory}
           onSelectCategory={selectTodoCategory}
           onClearCompletedTodos={clearCompletedTodos}
         />
       </div>
-    </>
+    </div>
   );
 };
