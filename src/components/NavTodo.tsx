@@ -16,7 +16,11 @@ export const NavTodo = ({
 }: Props) => {
   return (
     <div className="flex flex-row justify-between px-3 py-2">
-      <p>{numberOfIncompleteTodos} items left</p>
+      <p>
+        {numberOfIncompleteTodos} item
+        {numberOfIncompleteTodos === 1 ? " " : "s "}
+        left
+      </p>
       <div>
         {categories.map((cat) => (
           <button
