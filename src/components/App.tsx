@@ -59,6 +59,7 @@ export const App = () => {
             (counter, todo) => (todo.checked ? counter : counter + 1),
             0
           )}
+          isAnyCompletedTodo={todoList.some((todo) => todo.checked)}
           categories={todoCategories}
           activeCategory={todoCategory}
           onSelectCategory={selectTodoCategory}

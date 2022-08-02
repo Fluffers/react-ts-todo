@@ -22,7 +22,7 @@ export const InputTodo = ({
         setInputVal("");
       }}
     >
-      <button className="m-3" onClick={onToggleAllTodos}>
+      <button type="button" className="m-3" onClick={onToggleAllTodos}>
         ✓
       </button>
       <input
