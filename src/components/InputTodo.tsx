@@ -3,9 +3,13 @@ import { Todo } from "../types";
 
 interface InputTodoProps {
   onTodoCreate: (text: Todo["text"]) => void;
+  onToggleAllTodos: () => void;
 }
 
-export const InputTodo = ({ onTodoCreate }: InputTodoProps) => {
+export const InputTodo = ({
+  onTodoCreate,
+  onToggleAllTodos,
+}: InputTodoProps) => {
   const [inputVal, setInputVal] = useState("");
 
   return (
@@ -18,7 +22,9 @@ export const InputTodo = ({ onTodoCreate }: InputTodoProps) => {
         setInputVal("");
       }}
     >
-      <input type="checkbox" className="m-3"></input>
+      <button className="m-3" onClick={onToggleAllTodos}>
+        ✓
+      </button>
       <input
         type="text"
         className="p-3 flex-grow placeholder:italic placeholder:text-slate-400 shadow-gray-300 shadow-inner"
