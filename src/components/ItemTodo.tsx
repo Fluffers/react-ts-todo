@@ -1,9 +1,14 @@
 import { Todo } from "../types";
 import { ItemTodoProps } from "../types";
 
-export const ItemTodo = ({ todo, onToggleTodo }: ItemTodoProps) => {
+export const ItemTodo = ({
+  todo,
+  onToggleTodo,
+  onEditTodo,
+  onDeleteTodo,
+}: ItemTodoProps) => {
   return (
-    <div className="p-3 text-left flex border-b border-solid border-gray-300">
+    <div className="p-3 text-left flex border-b border-solid border-gray-300 group">
       <input
         type="checkbox"
         className="mr-3"
@@ -20,6 +25,12 @@ export const ItemTodo = ({ todo, onToggleTodo }: ItemTodoProps) => {
       >
         {todo.text}
       </span>
+      <button
+        className="ml-auto group-hover:block hidden"
+        onClick={() => onDeleteTodo(todo.id)}
+      >
+        ✗
+      </button>
     </div>
   );
 };

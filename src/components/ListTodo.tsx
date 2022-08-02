@@ -6,6 +6,8 @@ export const ListTodo = ({
   list,
   activeCategory,
   onToggleTodo,
+  onEditTodo,
+  onDeleteTodo,
 }: ListTodoProps) => {
   const selectCategory = (value: boolean) => {
     switch (activeCategory) {
@@ -23,7 +25,13 @@ export const ListTodo = ({
       {list
         .filter((todo) => selectCategory(todo.checked))
         .map((todo) => (
-          <ItemTodo onToggleTodo={onToggleTodo} todo={todo} key={todo.id} />
+          <ItemTodo
+            onToggleTodo={onToggleTodo}
+            onEditTodo={onEditTodo}
+            onDeleteTodo={onDeleteTodo}
+            todo={todo}
+            key={todo.id}
+          />
         ))}
     </div>
   );

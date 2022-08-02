@@ -12,12 +12,16 @@ export interface InputTodoProps {
 export interface ItemTodoProps {
   todo: Todo;
   onToggleTodo: (id: Todo["id"]) => void;
+  onEditTodo: (id: Todo["id"], text: string) => void;
+  onDeleteTodo: (id: Todo["id"]) => void;
 }
 
 export interface ListTodoProps {
   list: Array<Todo>;
   activeCategory: string;
   onToggleTodo: (id: Todo["id"]) => void;
+  onEditTodo: (id: Todo["id"], text: string) => void;
+  onDeleteTodo: (id: Todo["id"]) => void;
 }
 
 export interface NavTodoProps {

@@ -7,7 +7,6 @@ import { Todo } from "../types";
 
 export const App = () => {
   const todoCategories = ["all", "active", "completed"];
-
   const [todoList, setTodoList] = useState<Array<Todo>>([]);
   const [todoCategory, setTodoCategory] = useState<string>(todoCategories[0]);
 
@@ -24,6 +23,21 @@ export const App = () => {
         ...todo,
         checked: todo.id === toggledTodoId ? !todo.checked : todo.checked,
       }))
+    );
+  };
+
+  const editTodo = (toggledTodoId: Todo["id"], text: string) => {
+    setTodoList((todoList) =>
+      todoList.map((todo) => ({
+        ...todo,
+        text: todo.id === toggledTodoId ? (todo.text = text) : todo.text,
+      }))
+    );
+  };
+
+  const deleteTodo = (toggledTodoId: Todo["id"]) => {
+    setTodoList((todoList) =>
+      todoList.filter((todo) => todo.id !== toggledTodoId)
     );
   };
 
@@ -53,6 +67,8 @@ export const App = () => {
           list={todoList}
           activeCategory={todoCategory}
           onToggleTodo={toggleTodo}
+          onEditTodo={editTodo}
+          onDeleteTodo={deleteTodo}
         />
         <NavTodo
           numberOfIncompleteTodos={todoList.reduce(
