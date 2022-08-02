@@ -1,9 +1,5 @@
 import { Todo } from "../types";
-
-interface ItemTodoProps {
-  todo: Todo;
-  onToggleTodo: (id: Todo["id"]) => void;
-}
+import { ItemTodoProps } from "../types";
 
 export const ItemTodo = ({ todo, onToggleTodo }: ItemTodoProps) => {
   return (

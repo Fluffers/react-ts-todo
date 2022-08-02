@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { Todo } from "../types";
-
-interface InputTodoProps {
-  onTodoCreate: (text: Todo["text"]) => void;
-  onToggleAllTodos: () => void;
-}
+import { InputTodoProps } from "../types";
 
 export const InputTodo = ({
   onTodoCreate,

@@ -1,10 +1,6 @@
 import { Todo } from "../types";
 import { ItemTodo } from "./ItemTodo";
-interface ListTodoProps {
-  list: Array<Todo>;
-  activeCategory: string;
-  onToggleTodo: (id: Todo["id"]) => void;
-}
+import { ListTodoProps } from "../types";
 
 export const ListTodo = ({
   list,

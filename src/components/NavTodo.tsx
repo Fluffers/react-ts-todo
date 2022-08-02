@@ -1,12 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-interface Props {
-  categories: string[];
-  numberOfIncompleteTodos: number;
-  isAnyCompletedTodo: boolean;
-  activeCategory: string;
-  onSelectCategory: (category: string) => void;
-  onClearCompletedTodos: () => void;
-}
+import { NavTodoProps } from "../types";
 
 export const NavTodo = ({
   categories,
@@ -15,7 +8,7 @@ export const NavTodo = ({
   activeCategory,
   onSelectCategory,
   onClearCompletedTodos,
-}: Props) => {
+}: NavTodoProps) => {
   return numberOfIncompleteTodos > 0 || isAnyCompletedTodo ? (
     <div className="flex flex-row justify-between px-3 py-2">
       <p>
