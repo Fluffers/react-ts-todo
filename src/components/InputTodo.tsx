@@ -9,7 +9,7 @@ export const InputTodo = ({
 
   return (
     <form
-      className="bg-slate-50 flex flex-row justify-between border-b border-solid border-gray-300 shadow-gray-300 shadow-inner"
+      className="bg-slate-50 flex justify-between border-b border-gray-300 shadow-gray-300 shadow-inner"
       onSubmit={(event) => {
         event.preventDefault();
         if (inputVal.trim().length < 1) return false;
@@ -17,15 +17,20 @@ export const InputTodo = ({
         setInputVal("");
       }}
     >
-      <button type="button" className="m-3" onClick={onToggleAllTodos}>
-        ✓
+      <button
+        type="button"
+        className="m-3"
+        onClick={onToggleAllTodos}
+        aria-label="Toggle all todos"
+      >
+        <span aria-hidden="true">✓</span>
       </button>
       <input
         type="text"
         className="p-3 flex-grow placeholder:italic placeholder:text-slate-400 shadow-gray-300 shadow-inner"
         placeholder="What needs to be done?"
         value={inputVal}
-        onChange={(event) => setInputVal(event.target.value)}
+        onChange={(event) => setInputVal(event.currentTarget.value)}
       ></input>
     </form>
   );

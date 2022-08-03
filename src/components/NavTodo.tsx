@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
 import { NavTodoProps } from "../types";
+import clsx from "clsx";
 
 export const NavTodo = ({
   categories,
@@ -9,40 +9,38 @@ export const NavTodo = ({
   onSelectCategory,
   onClearCompletedTodos,
 }: NavTodoProps) => {
-  return numberOfIncompleteTodos > 0 || isAnyCompletedTodo ? (
-    <div className="flex flex-row justify-between px-3 py-2">
+  if (numberOfIncompleteTodos === 0 && !isAnyCompletedTodo) return null;
+
+  return (
+    <div className="flex justify-between px-3 py-2">
       <p>
-        {numberOfIncompleteTodos} item
-        {numberOfIncompleteTodos === 1 ? " " : "s "}
-        left
+        {`${numberOfIncompleteTodos} ${
+          numberOfIncompleteTodos === 1 ? "item" : "items"
+        } left`}
       </p>
       <div>
-        {categories.map((cat) => (
+        {categories.map((category) => (
           <button
-            key={uuidv4()}
-            onClick={() => onSelectCategory(cat)}
-            className={
-              "border rounded-md pl-1 pr-1 ml-2 mr-2 " +
-              (activeCategory === cat
-                ? "border-gray-300"
-                : "hover:border-gray-200 border-transparent")
-            }
+            key={category}
+            onClick={() => onSelectCategory(category)}
+            className={clsx({
+              "border rounded-md pl-1 pr-1 ml-2 mr-2": true,
+              "border-gray-300": activeCategory === category,
+              "hover:border-gray-200 border-transparent":
+                activeCategory !== category,
+            })}
           >
-            {cat}
+            {category}
           </button>
         ))}
       </div>
       <div className="w-32">
-        {isAnyCompletedTodo ? (
-          <button onClick={onClearCompletedTodos} className={"hover:underline"}>
+        {isAnyCompletedTodo && (
+          <button onClick={onClearCompletedTodos} className="hover:underline">
             Clear completed
           </button>
-        ) : (
-          ""
         )}
       </div>
     </div>
-  ) : (
-    <></>
   );
 };

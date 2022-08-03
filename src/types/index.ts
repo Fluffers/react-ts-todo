@@ -1,3 +1,5 @@
+import { todoCategories } from "../constants/todoCategories";
+
 export interface Todo {
   text: string;
   checked: boolean;
@@ -18,17 +20,19 @@ export interface ItemTodoProps {
 
 export interface ListTodoProps {
   list: Array<Todo>;
-  activeCategory: string;
+  activeCategory: TodoCategory;
   onToggleTodo: (id: Todo["id"]) => void;
   onEditTodo: (id: Todo["id"], text: string) => void;
   onDeleteTodo: (id: Todo["id"]) => void;
 }
 
 export interface NavTodoProps {
-  categories: string[];
+  categories: typeof todoCategories;
   numberOfIncompleteTodos: number;
   isAnyCompletedTodo: boolean;
-  activeCategory: string;
-  onSelectCategory: (category: string) => void;
+  activeCategory: TodoCategory;
+  onSelectCategory: (category: TodoCategory) => void;
   onClearCompletedTodos: () => void;
 }
+
+export type TodoCategory = typeof todoCategories[number];

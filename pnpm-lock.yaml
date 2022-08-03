@@ -8,6 +8,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.31.0
   '@vitejs/plugin-react': ^2.0.0
   autoprefixer: ^10.4.7
+  clsx: ^1.2.1
   eslint: ^8.20.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.2.1
@@ -23,6 +24,7 @@ specifiers:
 
 dependencies:
   '@types/uuid': 8.3.4
+  clsx: 1.2.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   uuid: 8.3.2
@@ -777,6 +779,11 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}

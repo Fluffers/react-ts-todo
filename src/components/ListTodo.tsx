@@ -1,5 +1,13 @@
 import { ItemTodo } from "./ItemTodo";
-import { ListTodoProps } from "../types";
+import { ListTodoProps, Todo, TodoCategory } from "../types";
+
+const filterTodos = (todos: Array<Todo>, category: TodoCategory) => {
+  if (category === "all") return todos;
+
+  const shouldTodoBeChecked = category !== "active";
+
+  return todos.filter((todo) => todo.checked === shouldTodoBeChecked);
+};
 
 export const ListTodo = ({
   list,
@@ -8,30 +16,19 @@ export const ListTodo = ({
   onEditTodo,
   onDeleteTodo,
 }: ListTodoProps) => {
-  const selectCategory = (value: boolean) => {
-    switch (activeCategory) {
-      case "all":
-        return true;
-      case "active":
-        return value === false;
-      case "completed":
-        return value === true;
-    }
-  };
+  const filteredTodos = filterTodos(list, activeCategory);
 
   return (
     <div>
-      {list
-        .filter((todo) => selectCategory(todo.checked))
-        .map((todo) => (
-          <ItemTodo
-            onToggleTodo={onToggleTodo}
-            onEditTodo={onEditTodo}
-            onDeleteTodo={onDeleteTodo}
-            todo={todo}
-            key={todo.id}
-          />
-        ))}
+      {filteredTodos.map((todo) => (
+        <ItemTodo
+          onToggleTodo={onToggleTodo}
+          onEditTodo={onEditTodo}
+          onDeleteTodo={onDeleteTodo}
+          todo={todo}
+          key={todo.id}
+        />
+      ))}
     </div>
   );
 };

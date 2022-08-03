@@ -3,12 +3,14 @@ import { InputTodo } from "./InputTodo";
 import { ListTodo } from "./ListTodo";
 import { NavTodo } from "./NavTodo";
 import { v4 as uuidv4 } from "uuid";
-import { Todo } from "../types";
+import { Todo, TodoCategory } from "../types";
+import { todoCategories } from "../constants/todoCategories";
 
 export const App = () => {
-  const todoCategories = ["all", "active", "completed"];
   const [todoList, setTodoList] = useState<Array<Todo>>([]);
-  const [todoCategory, setTodoCategory] = useState<string>(todoCategories[0]);
+  const [todoCategory, setTodoCategory] = useState<TodoCategory>(
+    todoCategories[0]
+  );
 
   const addTodo = (text: Todo["text"]) => {
     setTodoList(() => [
@@ -30,7 +32,7 @@ export const App = () => {
     setTodoList((todoList) =>
       todoList.map((todo) => ({
         ...todo,
-        text: todo.id === toggledTodoId ? (todo.text = text) : todo.text,
+        text: todo.id === toggledTodoId ? text : todo.text,
       }))
     );
   };
@@ -41,7 +43,7 @@ export const App = () => {
     );
   };
 
-  const selectTodoCategory = (category: string) => {
+  const selectTodoCategory = (category: TodoCategory) => {
     setTodoCategory(category);
   };
 
@@ -58,10 +60,16 @@ export const App = () => {
     );
   };
 
+  const numberOfIncompleteTodos = todoList.filter(
+    (todo) => !todo.checked
+  ).length;
+
+  // TODO: more semantic elements
+
   return (
     <div className="text-center max-w-xl m-auto flex flex-col">
       <h1 className="text-pink-300 text-4xl m-2">TODOS</h1>
-      <div className="border border-solid border-gray-300 bg-white shadow-gray-300 shadow-lg">
+      <div className="border border-gray-300 bg-white shadow-gray-300 shadow-lg">
         <InputTodo onTodoCreate={addTodo} onToggleAllTodos={toggleAllTodos} />
         <ListTodo
           list={todoList}
@@ -71,10 +79,7 @@ export const App = () => {
           onDeleteTodo={deleteTodo}
         />
         <NavTodo
-          numberOfIncompleteTodos={todoList.reduce(
-            (counter, todo) => (todo.checked ? counter : counter + 1),
-            0
-          )}
+          numberOfIncompleteTodos={numberOfIncompleteTodos}
           isAnyCompletedTodo={todoList.some((todo) => todo.checked)}
           categories={todoCategories}
           activeCategory={todoCategory}
