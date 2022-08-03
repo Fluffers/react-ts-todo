@@ -1,4 +1,3 @@
-import { Todo } from "../types";
 import { ItemTodo } from "./ItemTodo";
 import { ListTodoProps } from "../types";
 

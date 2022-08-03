@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Todo } from "../types";
 import { InputTodoProps } from "../types";
 
 export const InputTodo = ({
