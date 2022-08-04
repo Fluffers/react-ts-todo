@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputTodo } from "./InputTodo";
 import { ListTodo } from "./ListTodo";
 import { NavTodo } from "./NavTodo";
@@ -6,11 +6,24 @@ import { v4 as uuidv4 } from "uuid";
 import { Todo, TodoCategory } from "../types";
 import { todoCategories } from "../constants/todoCategories";
 
+const setTodosToLocalStorage = (todoList: Todo[]) => {
+  localStorage.setItem("todoList", JSON.stringify(todoList));
+};
+
+const getTododsFromLocalStorage = () => {
+  const storedTodoList = localStorage.getItem("todoList");
+  return !storedTodoList ? [] : JSON.parse(storedTodoList);
+};
+const todosFromLocalStorage = getTododsFromLocalStorage();
+
 export const App = () => {
-  const [todoList, setTodoList] = useState<Array<Todo>>([]);
+  const [todoList, setTodoList] = useState<Array<Todo>>(todosFromLocalStorage);
   const [todoCategory, setTodoCategory] = useState<TodoCategory>(
     todoCategories[0]
   );
+  useEffect(() => {
+    setTodosToLocalStorage(todoList);
+  }, [todoList]);
 
   const addTodo = (text: Todo["text"]) => {
     setTodoList(() => [
@@ -52,10 +65,11 @@ export const App = () => {
   };
 
   const toggleAllTodos = () => {
+    const shouldAllBeChecked = todoList.some((todo) => !todo.checked);
     setTodoList((todoList) =>
       todoList.map((todo) => ({
         ...todo,
-        checked: todoList.some((todo) => !todo.checked),
+        checked: shouldAllBeChecked,
       }))
     );
   };
