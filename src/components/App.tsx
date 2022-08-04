@@ -6,10 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 import { Todo, TodoCategory } from "../types";
 import { todoCategories } from "../constants/todoCategories";
 
-const setTodosToLocalStorage = (todoList: Todo[]) => {
-  localStorage.setItem("todoList", JSON.stringify(todoList));
-};
-
 const getTododsFromLocalStorage = () => {
   const storedTodoList = localStorage.getItem("todoList");
   return !storedTodoList ? [] : JSON.parse(storedTodoList);
@@ -21,9 +17,23 @@ export const App = () => {
   const [todoCategory, setTodoCategory] = useState<TodoCategory>(
     todoCategories[0]
   );
+
   useEffect(() => {
-    setTodosToLocalStorage(todoList);
+    localStorage.setItem("todoList", JSON.stringify(todoList));
   }, [todoList]);
+
+  useEffect(() => {
+    const onSyncBetweenTabs = (event: StorageEvent) => {
+      const { key, newValue } = event;
+      if (key === "todoList") {
+        setTodoList(!newValue ? [] : JSON.parse(newValue));
+      }
+    };
+    window.addEventListener("storage", onSyncBetweenTabs);
+    return () => {
+      window.removeEventListener("storage", onSyncBetweenTabs);
+    };
+  }, []);
 
   const addTodo = (text: Todo["text"]) => {
     setTodoList(() => [
