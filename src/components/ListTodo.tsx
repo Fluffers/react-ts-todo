@@ -19,7 +19,7 @@ export const ListTodo = ({
   const filteredTodos = filterTodos(list, activeCategory);
 
   return (
-    <div>
+    <>
       {filteredTodos.map((todo) => (
         <ItemTodo
           onToggleTodo={onToggleTodo}
@@ -29,6 +29,6 @@ export const ListTodo = ({
           key={todo.id}
         />
       ))}
-    </div>
+    </>
   );
 };

@@ -91,9 +91,9 @@ export const App = () => {
   // TODO: more semantic elements
 
   return (
-    <div className="text-center max-w-xl m-auto flex flex-col">
+    <article className="text-center max-w-xl m-auto flex flex-col">
       <h1 className="text-pink-300 text-4xl m-2">TODOS</h1>
-      <div className="border border-gray-300 bg-white shadow-gray-300 shadow-lg">
+      <main className="border border-gray-300 bg-white shadow-gray-300 shadow-lg">
         <InputTodo onTodoCreate={addTodo} onToggleAllTodos={toggleAllTodos} />
         <ListTodo
           list={todoList}
@@ -110,7 +110,7 @@ export const App = () => {
           onSelectCategory={selectTodoCategory}
           onClearCompletedTodos={clearCompletedTodos}
         />
-      </div>
-    </div>
+      </main>
+    </article>
   );
 };

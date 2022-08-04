@@ -12,13 +12,13 @@ export const NavTodo = ({
   if (numberOfIncompleteTodos === 0 && !isAnyCompletedTodo) return null;
 
   return (
-    <div className="flex justify-between px-3 py-2">
+    <footer className="flex justify-between px-3 py-2">
       <p>
         {`${numberOfIncompleteTodos} ${
           numberOfIncompleteTodos === 1 ? "item" : "items"
         } left`}
       </p>
-      <div>
+      <nav>
         {categories.map((category) => (
           <button
             key={category}
@@ -33,14 +33,14 @@ export const NavTodo = ({
             {category}
           </button>
         ))}
-      </div>
-      <div className="w-32">
+      </nav>
+      <p className="w-32">
         {isAnyCompletedTodo && (
           <button onClick={onClearCompletedTodos} className="hover:underline">
             Clear completed
           </button>
         )}
-      </div>
-    </div>
+      </p>
+    </footer>
   );
 };

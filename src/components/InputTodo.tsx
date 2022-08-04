@@ -19,7 +19,7 @@ export const InputTodo = ({
     >
       <button
         type="button"
-        className="m-3"
+        className="p-1 m-2"
         onClick={onToggleAllTodos}
         aria-label="Toggle all todos"
       >

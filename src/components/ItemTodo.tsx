@@ -45,7 +45,7 @@ export const ItemTodo = ({
   }
 
   return (
-    <div className="p-3 text-left flex border-b border-gray-300 group relative">
+    <div className="p-3 text-left flex border-b border-gray-300 group">
       <input
         type="checkbox"
         className="mr-3"
@@ -54,26 +54,26 @@ export const ItemTodo = ({
       ></input>
       <span
         className={clsx({
-          "pl-3 break-words overflow-hidden": true,
+          "pl-3 break-words overflow-hidden flex-grow": true,
           "line-through text-gray-500 ease-in-out duration-300": todo.checked,
         })}
       >
         {inputVal}
       </span>
-      <div className="absolute top-2 right-2">
+      <div className="flex w-12 space-x-2 invisible group-focus-within:visible group-hover:visible items-center">
         <button
-          className="mr-2 group-hover:inline-block hidden"
+          className="w-6"
           onClick={() => setIsEditState(true)}
           aria-label="Edit"
         >
-          ✏️
+          <span aria-hidden="true">✏️</span>
         </button>
         <button
-          className="mr-2 group-hover:inline-block hidden"
+          className="w-6"
           onClick={() => onDeleteTodo(todo.id)}
           aria-label="Delete"
         >
-          ✗
+          <span aria-hidden="true">✗</span>
         </button>
       </div>
     </div>
